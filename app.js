@@ -26,22 +26,9 @@ app.use("/users", userRoute);
 app.use("/api/payment/",paymentRoute);
 
 
-// Ensure the MongoDB URI is provided (fail fast in production)
-const dbUri = process.env.DBCON;
-if (!dbUri) {
-  console.error('FATAL: environment variable DBCON is not set.');
-  console.error('Set DBCON to your MongoDB connection string in your host environment.');
-  process.exit(1);
-}
-
-mongoose.connect(dbUri)
-  .then(() => {
-    console.log('DB Connected!!!');
-  })
-  .catch((err) => {
-    console.error('FATAL: Failed to connect to MongoDB:', err.message || err);
-    process.exit(1);
-  });
+mongoose.connect(process.env.DBCON).then(()=>{
+    console.log("DB Connected!!!");
+})
 
 
 app.listen(PORT, ()=>{
