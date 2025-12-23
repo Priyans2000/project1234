@@ -10,7 +10,10 @@ const userRoute= require("./routes/usersRoutes");
 require("dotenv").config();
 const PORT=process.env.PORT || 8000
 
-app.use(cors());
+app.use(cors({
+  origin: "https://project123-pearl-chi.vercel.app",
+  credentials: true
+}));
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
